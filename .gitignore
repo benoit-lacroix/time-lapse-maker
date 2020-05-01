@@ -1,16 +1,16 @@
-# Compiled class file
-*.class
+# IntelliJ IDEA Files
+.idea
+*.iws
+*.iml
+*.ipr
 
-# Log file
+# Log Files
+/log
 *.log
 
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+# Package and Binary Files #
+/target
+*.class
 *.jar
 *.war
 *.nar

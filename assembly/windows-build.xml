@@ -1,0 +1,41 @@
+<assembly xmlns="http://maven.apache.org/ASSEMBLY/2.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/ASSEMBLY/2.0.0 http://maven.apache.org/xsd/assembly-2.0.0.xsd">
+
+    <id>windows</id>
+
+    <formats>
+        <format>zip</format>
+    </formats>
+
+    <fileSets>
+        <fileSet>
+            <outputDirectory>.</outputDirectory>
+            <directory>target</directory>
+            <includes>
+                <include>*.exe</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <outputDirectory>lib</outputDirectory>
+            <directory>target</directory>
+            <includes>
+                <include>*.jar</include>
+            </includes>
+        </fileSet>
+        <fileSet>
+            <outputDirectory>config</outputDirectory>
+            <directory>target/extra-resources</directory>
+            <includes>
+                <include>*.yml</include>
+                <include>*.xml</include>
+            </includes>
+        </fileSet>
+    </fileSets>
+
+    <dependencySets>
+        <dependencySet>
+            <outputDirectory>lib</outputDirectory>
+        </dependencySet>
+    </dependencySets>
+</assembly>
