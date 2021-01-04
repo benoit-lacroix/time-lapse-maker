@@ -16,7 +16,7 @@
         <java.version>1.8</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sonar.projectKey>radixhomework_time-lapse-maker</sonar.projectKey>
+        <sonar.projectKey>time-lapse-maker</sonar.projectKey>
         <sonar.organization>radixhomework</sonar.organization>
 
         <lombok.version>1.18.12</lombok.version>

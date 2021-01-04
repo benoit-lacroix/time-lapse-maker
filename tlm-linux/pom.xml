@@ -16,6 +16,7 @@
 
     <properties>
         <phase.repackage>package</phase.repackage>
+        <sonar.projectKey>time-lapse-maker-linux</sonar.projectKey>
     </properties>
 
     <dependencies>
