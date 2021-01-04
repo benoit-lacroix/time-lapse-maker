@@ -1,0 +1,111 @@
+<controller:TimeLapseController
+        xmlns:bxml="https://pivot.apache.org/bxml"
+        xmlns:controller="radix.home.timelapsemaker.controllers"
+        xmlns="org.apache.pivot.wtk"
+        title="Time Lapse Maker"
+        maximized="true">
+
+    <TablePane
+            styles="{padding:5, horizontalSpacing:5, verticalSpacing:5}">
+        <columns>
+            <TablePane.Column width="100"/>
+            <TablePane.Column width="1*"/>
+        </columns>
+
+        <TablePane.Row>
+            <Label text="Source Directory" styles="{verticalAlignment:'center'}"/>
+            <TablePane styles="{horizontalSpacing:5}">
+                <columns>
+                    <TablePane.Column width="1*"/>
+                    <TablePane.Column width="100"/>
+                </columns>
+                <TablePane.Row>
+                    <TextInput bxml:id="sourceDirectory" editable="false"/>
+                    <PushButton bxml:id="chooseSource" buttonData="Choose"/>
+                </TablePane.Row>
+            </TablePane>
+        </TablePane.Row>
+
+        <TablePane.Row>
+            <Label text="Output File" styles="{verticalAlignment:'center'}"/>
+            <TablePane styles="{horizontalSpacing:5}">
+                <columns>
+                    <TablePane.Column width="1*"/>
+                    <TablePane.Column width="100"/>
+                </columns>
+                <TablePane.Row>
+                    <TextInput bxml:id="outputFile"/>
+                    <PushButton bxml:id="chooseTarget" buttonData="Choose"/>
+                </TablePane.Row>
+            </TablePane>
+        </TablePane.Row>
+
+        <TablePane.Row>
+            <Label text="Output Format" styles="{verticalAlignment:'center'}"/>
+            <TablePane styles="{horizontalSpacing:5}">
+                <columns>
+                    <TablePane.Column width="150"/>
+                    <TablePane.Column width="1*"/>
+                </columns>
+                <TablePane.Row>
+                    <ListButton bxml:id="outputFormats"/>
+                    <TablePane.Filler/>
+                </TablePane.Row>
+            </TablePane>
+        </TablePane.Row>
+
+        <TablePane.Row>
+            <Label text="Frame Rate" styles="{verticalAlignment:'center'}"/>
+            <TablePane styles="{horizontalSpacing:5}">
+                <columns>
+                    <TablePane.Column width="150"/>
+                    <TablePane.Column width="1*"/>
+                </columns>
+                <TablePane.Row>
+                    <ListButton bxml:id="frameRates"/>
+                    <Label text="images / second" styles="{verticalAlignment:'center'}"/>
+                </TablePane.Row>
+            </TablePane>
+        </TablePane.Row>
+
+        <TablePane.Row height="1*">
+            <TablePane styles="{horizontalSpacing:5}">
+                <columns>
+                    <TablePane.Column width="1*"/>
+                </columns>
+                <TablePane.Row>
+                    <Label text="Images" preferredHeight="16" styles="{verticalAlignment:'center'}"/>
+                </TablePane.Row>
+            </TablePane>
+            <Border>
+                <ScrollPane horizontalScrollBarPolicy="fill">
+                    <TableView bxml:id="tableView">
+                        <columns>
+                            <TableView.Column name="path" width="1*"/>
+                        </columns>
+                    </TableView>
+
+                </ScrollPane>
+            </Border>
+        </TablePane.Row>
+
+        <TablePane.Row>
+            <Label bxml:id="status" text="-" styles="{verticalAlignment:'center'}"/>
+
+            <TablePane
+                    styles="{horizontalSpacing:5, verticalSpacing:5}">
+                <columns>
+                    <TablePane.Column width="1*"/>
+                    <TablePane.Column width="150"/>
+                    <TablePane.Column width="150"/>
+                </columns>
+
+                <TablePane.Row>
+                    <Meter bxml:id="progressBar" preferredHeight="16" orientation="horizontal"/>
+                    <PushButton bxml:id="make" buttonData="Make Time Lapse"/>
+                    <PushButton bxml:id="exit" buttonData="Exit"/>
+                </TablePane.Row>
+            </TablePane>
+        </TablePane.Row>
+    </TablePane>
+</controller:TimeLapseController>

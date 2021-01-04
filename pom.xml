@@ -1,45 +1,71 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.2.2.RELEASE</version>
-        <relativePath/>
-    </parent>
-
-    <groupId>radix.home</groupId>
-    <artifactId>time-lapse-maker</artifactId>
+    <groupId>radix.home.timelapsemaker</groupId>
+    <artifactId>tlm-parent</artifactId>
     <version>1.1-SNAPSHOT</version>
 
-    <name>Time Lapse Maker</name>
+    <name>Time Lapse Maker - Parent</name>
+
+    <packaging>pom</packaging>
 
     <properties>
         <java.version>1.8</java.version>
-        <humble.version>0.3.0</humble.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <sonar.projectKey>bl5710_${project.artifactId}</sonar.projectKey>
-        <sonar.organization>bl5710-github</sonar.organization>
-        <sonar.host.url>https://sonarcloud.io</sonar.host.url>
+        <lombok.version>1.18.12</lombok.version>
+        <slf4j.version>1.7.30</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <pivot.version>2.0.5</pivot.version>
+        <humble.version>0.3.0</humble.version>
     </properties>
+
+    <modules>
+        <module>tlm-common</module>
+        <module>tlm-windows</module>
+        <module>tlm-macos</module>
+        <module>tlm-linux</module>
+    </modules>
 
     <dependencies>
         <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.yaml</groupId>
-            <artifactId>snakeyaml</artifactId>
-        </dependency>
-
-        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
-            <optional>true</optional>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${slf4j.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+            <version>${logback.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.pivot</groupId>
+            <artifactId>pivot-core</artifactId>
+            <version>${pivot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.pivot</groupId>
+            <artifactId>pivot-wtk</artifactId>
+            <version>${pivot.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.pivot</groupId>
+            <artifactId>pivot-wtk-terra</artifactId>
+            <version>${pivot.version}</version>
         </dependency>
 
         <dependency>
@@ -50,152 +76,16 @@
     </dependencies>
 
     <build>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <excludes>
-                    <exclude>**/*.yml</exclude>
-                    <exclude>**/*.xml</exclude>
-                </excludes>
-            </resource>
-        </resources>
-
         <plugins>
             <plugin>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>3.1.0</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources-phase</id>
-                        <phase>validate</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <outputDirectory>${basedir}/target/extra-resources</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>src/extra-resources/</directory>
-                                    <filtering>true</filtering>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-antrun-plugin</artifactId>
-                <executions>
-                    <execution>
-                        <id>replace-phase</id>
-                        <phase>prepare-package</phase>
-                        <configuration>
-                            <target>
-                                <!--suppress UnresolvedMavenProperty -->
-                                <replace token="@artifactId@" value="${project.artifactId}" dir="target/">
-                                    <include name="extra-resources/*"/>
-                                </replace>
-                                <!--suppress UnresolvedMavenProperty -->
-                                <replace token="@packageVersion@" value="${project.version}" dir="target/">
-                                    <include name="extra-resources/*"/>
-                                </replace>
-                            </target>
-                        </configuration>
-                        <goals>
-                            <goal>run</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <dependencies>
-                    <dependency>
-                        <groupId>org.springframework.boot.experimental</groupId>
-                        <artifactId>spring-boot-thin-layout</artifactId>
-                        <version>1.0.11.RELEASE</version>
-                    </dependency>
-                </dependencies>
-                <executions>
-                    <execution>
-                        <id>repackage-jar</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>sh.tak.appbundler</groupId>
-                <artifactId>appbundle-maven-plugin</artifactId>
-                <version>1.2.0</version>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
                 <configuration>
-                    <mainClass>org.springframework.boot.loader.JarLauncher</mainClass>
-                    <iconFile>src/main/resources/radixhome.icns</iconFile>
-                    <buildDirectory>${project.build.directory}</buildDirectory>
-                    <!--<generateDiskImageFile>true</generateDiskImageFile>-->
+                    <source>11</source>
+                    <target>11</target>
+                    <encoding>UTF-8</encoding>
                 </configuration>
-                <executions>
-                    <execution>
-                        <id>macos-pkg</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>bundle</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <groupId>com.akathist.maven.plugins.launch4j</groupId>
-                <artifactId>launch4j-maven-plugin</artifactId>
-                <version>1.7.25</version>
-                <executions>
-                    <execution>
-                        <id>windows-pkg</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>launch4j</goal>
-                        </goals>
-                        <configuration>
-                            <dontWrapJar>true</dontWrapJar>
-                            <headerType>gui</headerType>
-                            <jar>lib\${project.build.finalName}.jar</jar>
-                            <outfile>${project.build.directory}/${project.name}.exe</outfile>
-                            <icon>src/main/resources/radixhome.ico</icon>
-                            <jre>
-                                <minVersion>1.8</minVersion>
-                                <opts>
-                                    <opt>-Dspring.config.location="config\timelapsemaker.yml"</opt>
-                                </opts>
-                            </jre>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <plugin>
-                <artifactId>maven-assembly-plugin</artifactId>
-                <configuration>
-                    <descriptors>
-                        <descriptor>assembly/windows-build.xml</descriptor>
-                        <descriptor>assembly/macos-build.xml</descriptor>
-                    </descriptors>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>zip-phase</id>
-                        <phase>install</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                    </execution>
-                </executions>
             </plugin>
         </plugins>
     </build>

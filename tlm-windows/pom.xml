@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>radix.home.timelapsemaker</groupId>
+        <artifactId>tlm-parent</artifactId>
+        <version>1.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>tlm-windows</artifactId>
+
+    <name>Time Lapse Maker - Windows</name>
+
+    <properties>
+        <phase.repackage>package</phase.repackage>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>${project.parent.groupId}</groupId>
+            <artifactId>tlm-common</artifactId>
+            <version>${project.parent.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.humble</groupId>
+            <artifactId>humble-video-arch-x86_64-w64-mingw32</artifactId>
+            <version>${humble.version}</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.2.0</version>
+                <configuration>
+                    <finalName>time-lapse-maker-${project.version}</finalName>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.2.2.RELEASE</version>
+                <configuration>
+                    <mainClass>radix.home.timelapsemaker.TimeLapseMakerApplication</mainClass>
+                    <excludes>
+                        <exclude>
+                            <groupId>io.humble</groupId>
+                            <artifactId>humble-video-arch-x86_64-apple-darwin18</artifactId>
+                        </exclude>
+                        <exclude>
+                            <groupId>io.humble</groupId>
+                            <artifactId>humble-video-arch-x86_64-pc-linux-gnu6</artifactId>
+                        </exclude>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                    <finalName>time-lapse-maker-${project.version}</finalName>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage-jar</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>1.7.25</version>
+                <executions>
+                    <execution>
+                        <id>windows-pkg</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <dontWrapJar>false</dontWrapJar>
+                            <jar>${project.build.directory}/time-lapse-maker-${project.version}.jar</jar>
+                            <headerType>gui</headerType>
+                            <outfile>${project.build.directory}/Time Lapse Maker.exe</outfile>
+                            <icon>src/main/resources/radixhome.ico</icon>
+                            <jre>
+                                <minVersion>11</minVersion>
+                            </jre>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+</project>
