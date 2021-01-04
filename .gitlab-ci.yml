@@ -1,10 +1,27 @@
 # GitLab CI Configuration file
 
+variables:
+  SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+  GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+
 stages:
   - build
+  - sonar-check
 
 build-job:
   stage: build
   image: maven:3.6.3-openjdk-11
   script:
     - mvn install
+
+sonar-check-job:
+  cache:
+    key: "${CI_JOB_NAME}"
+    paths:
+      - .sonar/cache
+  script:
+    - mvn verify sonar:sonar
+  only:
+    - merge_requests
+    - master
+    - develop
