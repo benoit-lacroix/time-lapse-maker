@@ -7,7 +7,7 @@
     <parent>
         <groupId>radix.home.timelapsemaker</groupId>
         <artifactId>tlm-parent</artifactId>
-        <version>1.1.1</version>
+        <version>1.1.2</version>
     </parent>
 
     <artifactId>tlm-macos</artifactId>
