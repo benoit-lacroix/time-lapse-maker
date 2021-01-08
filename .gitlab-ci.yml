@@ -50,5 +50,5 @@ build-tag:
     - >
       curl
       --header "JOB-TOKEN: $CI_JOB_TOKEN"
-      --upload-file "tlm-macos/target/${OUT_PREF}-linux.tar.gz"
+      --upload-file "tlm-linux/target/${OUT_PREF}-linux.tar.gz"
       "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${PKG_NAME}/${OUT_VERS}/${OUT_PREF}-linux.tar.gz"
