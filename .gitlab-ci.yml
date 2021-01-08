@@ -3,9 +3,13 @@
 variables:
   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"
   GIT_DEPTH: "0"
+  #PKG_NAME: "time-lapse-maker"
+  #OUT_PREF: "Time_Lapse_Maker"
+  #OUT_VERS: "1.1.0-SNAPSHOT"
 
 stages:
   - build
+  #- build-tag
 
 build-job:
   stage: build
@@ -21,6 +25,19 @@ build-job:
   script:
     - mvn install
     - mvn verify sonar:sonar
-    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "tlm-windows/target/Time_Lapse_Maker-windows.zip ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/time-lapse-maker/snapshot/Time_Lapse_Maker-windows.zip"'
-    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "tlm-macos/target/Time_Lapse_Maker-macos.zip ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/time-lapse-maker/snapshot/Time_Lapse_Maker-macos.zip"'
-    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "tlm-macos/target/Time_Lapse_Maker-linux.tar.gz ${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/time-lapse-maker/snapshot/Time_Lapse_Maker-linux.tar.gz"'
+    - mvn deploy -s ci_settings.xml
+    #- >
+    #  curl
+    #  --header "JOB-TOKEN: $CI_JOB_TOKEN"
+    #  --upload-file "tlm-windows/target/${OUT_PREF}-windows.zip"
+    #  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${PKG_NAME}/${OUT_VERS}/${OUT_PREF}-windows.zip"
+    #- >
+    #  curl
+    #  --header "JOB-TOKEN: $CI_JOB_TOKEN"
+    #  --upload-file "tlm-macos/target/${OUT_PREF}-macos.zip"
+    #  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${PKG_NAME}/${OUT_VERS}/${OUT_PREF}-macos.zip"
+    #- >
+    #  curl
+    #  --header "JOB-TOKEN: $CI_JOB_TOKEN"
+    #  --upload-file "tlm-macos/target/${OUT_PREF}-linux.tar.gz"
+    #  "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/${PKG_NAME}/${OUT_VERS}/${OUT_PREF}-linux.tar.gz"
