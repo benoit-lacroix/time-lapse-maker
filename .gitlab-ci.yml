@@ -36,7 +36,6 @@ build-tag:
       - .sonar/cache
   script:
     - mvn install
-    - mvn verify sonar:sonar
     - OUT_VERS=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
     - >
       curl
