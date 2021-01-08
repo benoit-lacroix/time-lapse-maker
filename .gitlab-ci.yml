@@ -23,7 +23,6 @@ build-snapshot:
   script:
     - mvn install
     - mvn verify sonar:sonar
-    - mvn deploy -s ci_settings.xml
 
 build-tag:
   stage: build-tag
