@@ -19,6 +19,5 @@ build-job:
     - master
     - develop
   script:
-    - apt-get -y install genisoimage
     - mvn install
     - mvn verify sonar:sonar
