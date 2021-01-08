@@ -6,7 +6,7 @@
 
     <groupId>radix.home.timelapsemaker</groupId>
     <artifactId>tlm-parent</artifactId>
-    <version>1.1-SNAPSHOT</version>
+    <version>1.1.0-SNAPSHOT</version>
 
     <name>Time Lapse Maker</name>
 
@@ -29,8 +29,8 @@
     <modules>
         <module>tlm-common</module>
         <module>tlm-windows</module>
-        <module>tlm-macos</module>
         <module>tlm-linux</module>
+        <module>tlm-macos</module>
     </modules>
 
     <dependencies>
