@@ -19,13 +19,6 @@ public class SelectOutputFormatEvent implements ListButtonSelectionListener {
 
     @Override
     public void selectedIndexChanged(ListButton listButton, int previousSelectedIndex) {
-        //EnumOutputFormat oldFormat =
-        //        EnumOutputFormat.findByLabel((String) listButton.getListData().get(previousSelectedIndex));
-        //EnumOutputFormat newFormat = EnumOutputFormat.findByLabel((String) listButton.getSelectedItem());
-        //String newOutputFile = targetDisplay.getText().replace(oldFormat.getExtension(), newFormat.getExtension());
-        //GuiUtils.updateTextInput(targetDisplay, newOutputFile);
-        //chooseTargetEvent.setSelectedOutputFormat(newFormat.getLabel());
-
         // Nothing to do (handled in selectedItemChanged method)
     }
 

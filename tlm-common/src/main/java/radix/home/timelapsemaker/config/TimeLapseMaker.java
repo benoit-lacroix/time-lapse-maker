@@ -33,9 +33,11 @@ public class TimeLapseMaker implements Application {
 
     @Override
     public void suspend() {
+        // Nothing to do
     }
 
     @Override
     public void resume() {
+        // Nothing to do
     }
 }
