@@ -14,7 +14,7 @@
             <outputDirectory>.</outputDirectory>
             <directory>target/</directory>
             <includes>
-                <include>*.dmg</include>
+                <include>*.app/**</include>
             </includes>
         </fileSet>
     </fileSets>
