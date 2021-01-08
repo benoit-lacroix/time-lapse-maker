@@ -5,11 +5,11 @@
 *.ipr
 
 # Log Files
-/log
+log
 *.log
 
 # Package and Binary Files #
-/target
+target
 *.class
 *.jar
 *.war

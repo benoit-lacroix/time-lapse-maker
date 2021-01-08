@@ -21,3 +21,5 @@ build-job:
   script:
     - mvn install
     - mvn verify sonar:sonar
+   #- 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file path/to/file.txt "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/my_package/0.0.1/file.txt"'
+    - 'curl --header "JOB-TOKEN: $CI_JOB_TOKEN" --upload-file "tlm-windows/target/Time Lapse Maker.exe" "${CI_API_V4_URL}/projects/${CI_PROJECT_ID}/packages/generic/time-lapse-maker/snapshot/Time Lapse Maker.exe"'
