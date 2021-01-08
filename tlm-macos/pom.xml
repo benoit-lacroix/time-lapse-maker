@@ -56,7 +56,6 @@
                     <iconFile>src/main/resources/radixhome.icns</iconFile>
                     <buildDirectory>${project.build.directory}</buildDirectory>
                     <bundleName>Time Lapse Maker</bundleName>
-                    <generateDiskImageFile>true</generateDiskImageFile>
                 </configuration>
                 <executions>
                     <execution>
