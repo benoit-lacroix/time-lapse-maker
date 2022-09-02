@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Time Lapse Maker
+Exec=/opt/time-lapse-maker/time-lapse-maker.sh
+Icon=/opt/time-lapse-maker/radixhomework.png
+Type=Application
+Categories=AudioVideo;Video
+Terminal=false
