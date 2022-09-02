@@ -1,7 +1,7 @@
 package io.github.radixhomework.timelapsemaker.config;
 
-import lombok.extern.slf4j.Slf4j;
 import io.github.radixhomework.timelapsemaker.enums.EnumImageType;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
 import java.util.function.Predicate;

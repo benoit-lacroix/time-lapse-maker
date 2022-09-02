@@ -1,5 +1,6 @@
 package io.github.radixhomework.timelapsemaker.enums;
 
+import io.github.radixhomework.timelapsemaker.exception.EnumValueNotFoundException;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
@@ -15,6 +16,8 @@ public enum EnumImageType {
     JPG("image/jpeg"),
     PNG("image/png");
 
+    public static final String ERROR_PREFIX = "Image type with value ";
+    public static final String ERROR_SUFFIX = " not found";
     private final String type;
 
     public static EnumImageType findByType(String type) {
@@ -23,7 +26,7 @@ public enum EnumImageType {
                 return value;
             }
         }
-        return null;
+        throw new EnumValueNotFoundException(ERROR_PREFIX + type + ERROR_SUFFIX);
     }
 
     public static EnumImageType findByType(Path path) {
@@ -32,7 +35,7 @@ public enum EnumImageType {
                 return value;
             }
         }
-        return null;
+        throw new EnumValueNotFoundException(ERROR_PREFIX + path.toString() + ERROR_SUFFIX);
     }
 
     public static boolean isAllowed(String type) {
@@ -41,7 +44,7 @@ public enum EnumImageType {
                 return true;
             }
         }
-        return false;
+        throw new EnumValueNotFoundException(ERROR_PREFIX + type + ERROR_SUFFIX);
     }
 
     public static boolean isAllowed(Path path) {
@@ -50,7 +53,7 @@ public enum EnumImageType {
                 return true;
             }
         }
-        return false;
+        throw new EnumValueNotFoundException(ERROR_PREFIX + path.toString() + ERROR_SUFFIX);
     }
 
     public boolean matches(String type) {

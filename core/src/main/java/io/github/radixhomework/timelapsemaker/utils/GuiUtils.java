@@ -3,11 +3,7 @@ package io.github.radixhomework.timelapsemaker.utils;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.pivot.wtk.ApplicationContext;
-import org.apache.pivot.wtk.Component;
-import org.apache.pivot.wtk.Label;
-import org.apache.pivot.wtk.Meter;
-import org.apache.pivot.wtk.TextInput;
+import org.apache.pivot.wtk.*;
 
 import java.util.List;
 

@@ -1,0 +1,8 @@
+package io.github.radixhomework.timelapsemaker.exception;
+
+public class EnumValueNotFoundException extends RuntimeException {
+
+    public EnumValueNotFoundException(String message) {
+        super(message);
+    }
+}

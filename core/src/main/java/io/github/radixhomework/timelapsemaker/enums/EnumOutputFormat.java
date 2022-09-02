@@ -1,5 +1,6 @@
 package io.github.radixhomework.timelapsemaker.enums;
 
+import io.github.radixhomework.timelapsemaker.exception.EnumValueNotFoundException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,6 +17,9 @@ public enum EnumOutputFormat {
     MP4("MPEG4", ".mp4"),
     AVI("AVI", ".avi");
 
+    public static final String ERROR_PREFIX = "Image type with value ";
+    public static final String ERROR_SUFFIX = " not found";
+
     @Getter(value = AccessLevel.NONE)
     public static final String DEFAULT_VALUE = MP4.getLabel();
 
@@ -28,7 +32,7 @@ public enum EnumOutputFormat {
                 return value;
             }
         }
-        return null;
+        throw new EnumValueNotFoundException(ERROR_PREFIX + label + ERROR_SUFFIX);
     }
 
     public static List<String> getValues() {

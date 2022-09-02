@@ -2,16 +2,11 @@ package io.github.radixhomework.timelapsemaker.services;
 
 import io.github.radixhomework.timelapsemaker.config.ImageComparator;
 import io.github.radixhomework.timelapsemaker.config.ImagePredicate;
+import io.github.radixhomework.timelapsemaker.enums.EnumFrameRate;
+import io.github.radixhomework.timelapsemaker.enums.EnumImageType;
 import io.github.radixhomework.timelapsemaker.utils.DurationUtils;
 import io.github.radixhomework.timelapsemaker.utils.GuiUtils;
-import io.humble.video.Codec;
-import io.humble.video.Encoder;
-import io.humble.video.MediaPacket;
-import io.humble.video.MediaPicture;
-import io.humble.video.Muxer;
-import io.humble.video.MuxerFormat;
-import io.humble.video.PixelFormat;
-import io.humble.video.Rational;
+import io.humble.video.*;
 import io.humble.video.awt.MediaPictureConverter;
 import io.humble.video.awt.MediaPictureConverterFactory;
 import lombok.AllArgsConstructor;
@@ -20,8 +15,6 @@ import org.apache.pivot.util.concurrent.Task;
 import org.apache.pivot.util.concurrent.TaskExecutionException;
 import org.apache.pivot.wtk.Label;
 import org.apache.pivot.wtk.Meter;
-import io.github.radixhomework.timelapsemaker.enums.EnumFrameRate;
-import io.github.radixhomework.timelapsemaker.enums.EnumImageType;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -30,7 +23,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static io.humble.video.Coder.Flag.FLAG_GLOBAL_HEADER;
 import static io.humble.video.ContainerFormat.Flag.GLOBAL_HEADER;

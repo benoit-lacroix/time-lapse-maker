@@ -1,13 +1,13 @@
 package io.github.radixhomework.timelapsemaker.events;
 
+import io.github.radixhomework.timelapsemaker.enums.EnumOutputFormat;
+import io.github.radixhomework.timelapsemaker.utils.GuiUtils;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.pivot.wtk.ListButton;
 import org.apache.pivot.wtk.ListButtonSelectionListener;
 import org.apache.pivot.wtk.TextInput;
 import org.apache.pivot.wtk.Window;
-import io.github.radixhomework.timelapsemaker.enums.EnumOutputFormat;
-import io.github.radixhomework.timelapsemaker.utils.GuiUtils;
 
 @Slf4j
 @AllArgsConstructor

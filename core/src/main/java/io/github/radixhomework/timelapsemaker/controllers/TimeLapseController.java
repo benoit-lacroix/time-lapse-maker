@@ -1,27 +1,18 @@
 package io.github.radixhomework.timelapsemaker.controllers;
 
+import io.github.radixhomework.timelapsemaker.enums.EnumFrameRate;
+import io.github.radixhomework.timelapsemaker.enums.EnumOutputFormat;
+import io.github.radixhomework.timelapsemaker.events.ChooseSourceEvent;
 import io.github.radixhomework.timelapsemaker.events.ChooseTargetEvent;
 import io.github.radixhomework.timelapsemaker.events.SelectOutputFormatEvent;
+import io.github.radixhomework.timelapsemaker.services.TimeLapseTask;
+import io.github.radixhomework.timelapsemaker.services.TimeLapseTaskListener;
 import io.github.radixhomework.timelapsemaker.utils.GuiUtils;
 import org.apache.pivot.beans.BXML;
 import org.apache.pivot.beans.Bindable;
 import org.apache.pivot.collections.Map;
 import org.apache.pivot.util.Resources;
-import org.apache.pivot.wtk.Alert;
-import org.apache.pivot.wtk.Component;
-import org.apache.pivot.wtk.Label;
-import org.apache.pivot.wtk.ListButton;
-import org.apache.pivot.wtk.MessageType;
-import org.apache.pivot.wtk.Meter;
-import org.apache.pivot.wtk.PushButton;
-import org.apache.pivot.wtk.TableView;
-import org.apache.pivot.wtk.TextInput;
-import org.apache.pivot.wtk.Window;
-import io.github.radixhomework.timelapsemaker.enums.EnumFrameRate;
-import io.github.radixhomework.timelapsemaker.enums.EnumOutputFormat;
-import io.github.radixhomework.timelapsemaker.events.ChooseSourceEvent;
-import io.github.radixhomework.timelapsemaker.services.TimeLapseTask;
-import io.github.radixhomework.timelapsemaker.services.TimeLapseTaskListener;
+import org.apache.pivot.wtk.*;
 
 import java.net.URL;
 import java.util.ArrayList;
